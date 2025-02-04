@@ -3,9 +3,9 @@ const nextConfig = {
     images: {
         unoptimized: true,
     },
-    // 禁用服务端特性
+    // 服务端特性
     experimental: {
-        serverActions: false,
+        serverActions: true,
     }
 };
 
