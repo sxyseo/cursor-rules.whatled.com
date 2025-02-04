@@ -67,7 +67,7 @@ export function Menu() {
       </ScrollArea>
       <Separator className="my-4" />
       <a
-        href="https://github.com/pontusab/cursor.directory"
+        href="https://cursor-rules.whatled.com"
         target="_blank"
         rel="noreferrer"
       >
