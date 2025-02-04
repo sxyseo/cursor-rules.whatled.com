@@ -6,6 +6,7 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    trailingSlash: true, // 添加尾部斜杠
     images: {
         unoptimized: true,
     },
@@ -44,6 +45,14 @@ const nextConfig = {
             runtimeChunk: false
         };
 
+        // 确保生成正确的资源路径
+        if (!isServer) {
+            config.output = {
+                ...config.output,
+                publicPath: '/_next/',
+            };
+        }
+
         if (!isServer) {
             config.resolve.alias = {
                 ...config.resolve.alias,
@@ -60,6 +69,9 @@ const nextConfig = {
 
         return config;
     },
+    // 确保静态资源路径正确
+    assetPrefix: '',
+    basePath: '',
     // 添加输出配置
     poweredByHeader: false,
     compress: true,
