@@ -24,9 +24,14 @@ const nextConfig = {
                 lib: {
                     test: /[\\/]node_modules[\\/]/,
                     name(module, chunks, cacheGroupKey) {
-                        const packageName = module.context.match(
+                        // 添加安全检查
+                        if (!module.context) {
+                            return `${cacheGroupKey}.unknown`;
+                        }
+                        const matches = module.context.match(
                             /[\\/]node_modules[\\/](.*?)([\\/]|$)/
-                        )[1];
+                        );
+                        const packageName = matches ? matches[1] : 'unknown';
                         return `${cacheGroupKey}.${packageName.replace('@', '')}`;
                     },
                     priority: 30,
