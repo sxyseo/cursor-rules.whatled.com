@@ -16,7 +16,7 @@ const nextConfig = {
             chunks: 'all',
             maxInitialRequests: 25,
             minSize: 20000,
-            maxSize: 8000000, // 降低到 8MB
+            maxSize: 6000000, // 降低到 6MB
             cacheGroups: {
                 default: false,
                 vendors: false,
