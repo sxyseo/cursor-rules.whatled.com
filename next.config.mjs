@@ -10,7 +10,7 @@ const nextConfig = {
         unoptimized: true,
     },
     experimental: {
-        serverActions: true,
+        serverActions: false,
     },
     // 添加 webpack 配置来优化构建输出
     webpack: (config, { isServer }) => {
@@ -94,7 +94,7 @@ const nextConfig = {
         return config;
     },
     // 添加输出配置
-    output: 'standalone',
+    output: 'export',
     poweredByHeader: false,
     compress: true,
 };

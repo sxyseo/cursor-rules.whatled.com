@@ -1,8 +1,8 @@
 import { getRuleBySlug, rules } from "@/data";
 import { NextResponse } from "next/server";
 
-export const dynamic = "force-static";
-export const revalidate = 86400; // Revalidate once every day
+export const dynamic = "error";
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   return rules.map((rule) => ({
