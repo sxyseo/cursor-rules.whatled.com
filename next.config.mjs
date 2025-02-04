@@ -94,7 +94,6 @@ const nextConfig = {
         return config;
     },
     // 添加输出配置
-    output: 'export',
     poweredByHeader: false,
     compress: true,
 };
