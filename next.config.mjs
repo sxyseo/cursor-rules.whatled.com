@@ -6,7 +6,6 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output: 'export', // 使用静态导出
     images: {
         unoptimized: true,
     },
