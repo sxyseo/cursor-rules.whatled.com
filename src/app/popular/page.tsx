@@ -14,6 +14,23 @@ export const revalidate = 86400; // Revalidate once every day
 const popularRules = await getPopularRules();
 
 export default async function Page() {
+  // 将数据按标签分组
+  const groupedRules = popularRules[0].rules.reduce((acc, rule) => {
+    rule.tags.forEach(tag => {
+      if (!acc[tag]) {
+        acc[tag] = [];
+      }
+      acc[tag].push(rule);
+    });
+    return acc;
+  }, {} as Record<string, Rule[]>);
+
+  // 转换为期望的格式
+  const sections = Object.entries(groupedRules).map(([tag, rules]) => ({
+    tag,
+    rules
+  }));
+
   return (
     <>
       <div className="hidden md:flex mt-12 sticky top-12 h-[calc(100vh-3rem)]">
@@ -22,7 +39,7 @@ export default async function Page() {
 
       <main className="flex-1 p-6 pt-4 md:pt-16 space-y-8">
         <Tabs />
-        {popularRules?.map(
+        {sections.map(
           (section: { tag: string; rules: Rule[] }, idx: number) => (
             <section key={section.tag} id={section.tag}>
               <h3 className="text-lg font-semibold mb-4">{section.tag}</h3>
