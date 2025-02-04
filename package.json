@@ -7,8 +7,7 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "typecheck": "tsc --noEmit",
-        "postbuild": "next-bundle-analyzer"
+        "typecheck": "tsc --noEmit"
     },
     "dependencies": {
         "@next/bundle-analyzer": "^15.1.6",

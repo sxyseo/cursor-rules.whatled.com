@@ -1,7 +1,7 @@
 import bundleAnalyzer from '@next/bundle-analyzer';
 
 const withBundleAnalyzer = bundleAnalyzer({
-    enabled: process.env.ANALYZE === 'true',
+    enabled: false, // 只在需要分析时设置为 true
 });
 
 /** @type {import('next').NextConfig} */
