@@ -6,8 +6,6 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output: 'export', // 确保静态导出
-    distDir: '.next', // 改用 out 目录
     trailingSlash: true, // 添加尾部斜杠
     images: {
         unoptimized: true,
