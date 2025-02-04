@@ -10,7 +10,7 @@ const nextConfig = {
         unoptimized: true,
     },
     experimental: {
-        serverActions: false,
+        serverActions: true,
     },
     // 添加 webpack 配置来优化构建输出
     webpack: (config, { isServer }) => {

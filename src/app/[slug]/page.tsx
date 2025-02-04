@@ -14,9 +14,6 @@ export async function generateMetadata({ params }: { params: Params }) {
   };
 }
 
-export const dynamic = 'error';
-export const dynamicParams = false;
-
 export async function generateStaticParams() {
   return rules.map((rule) => ({
     slug: rule.slug,
