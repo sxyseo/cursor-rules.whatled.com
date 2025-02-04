@@ -16,7 +16,7 @@ const nextConfig = {
             chunks: 'all',
             maxInitialRequests: 25,
             minSize: 20000,
-            maxSize: 24000000, // 24MB，略小于 25MB 限制
+            maxSize: 12000000, // 降低到 12MB
             cacheGroups: {
                 default: false,
                 vendors: false,
@@ -44,11 +44,53 @@ const nextConfig = {
                     minChunks: 2,
                     priority: 20,
                 },
+                // 样式分割
+                styles: {
+                    name: 'styles',
+                    test: /\.(css|scss|sass)$/,
+                    chunks: 'all',
+                    enforce: true,
+                    priority: 40,
+                },
+                // React 相关库分割
+                react: {
+                    test: /[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/,
+                    name: 'react',
+                    chunks: 'all',
+                    priority: 50,
+                },
+                // UI 组件库分割
+                ui: {
+                    test: /[\\/]node_modules[\\/](@radix-ui|@floating-ui|lucide-react)[\\/]/,
+                    name: 'ui',
+                    chunks: 'all',
+                    priority: 45,
+                },
             },
         };
 
+        // 添加额外的优化
+        if (!isServer) {
+            // 移除不必要的 moment.js 语言包
+            config.resolve.alias = {
+                ...config.resolve.alias,
+                moment$: 'moment/moment.js',
+            };
+        }
+
+        // 启用模块连接
+        config.optimization.concatenateModules = true;
+
+        // 启用作用域提升
+        config.optimization.usedExports = true;
+        config.optimization.sideEffects = true;
+
         return config;
     },
+    // 添加输出配置
+    output: 'standalone',
+    poweredByHeader: false,
+    compress: true,
 };
 
 export default nextConfig;
