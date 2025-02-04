@@ -12,7 +12,7 @@ export async function getPopularRules() {
             ...rule,
             count: Number(count) || 0,
           };
-        }),
+        })
       );
 
       const sortedRules = rulesWithCounts.sort((a, b) => b.count - a.count);
@@ -23,7 +23,7 @@ export async function getPopularRules() {
         rules: sortedRules,
         totalCount,
       };
-    }),
+    })
   );
 
   return sectionsWithCounts.sort((a, b) => b.totalCount - a.totalCount);
